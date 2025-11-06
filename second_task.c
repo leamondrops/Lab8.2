@@ -16,9 +16,60 @@ Modify your function to allocate space for the trimmed string! What is the diffe
 */
 
 
+
+
 #include <stdio.h>
+#include <stdlib.h>
+
+char* trimmer(char *s){
+    int start = 0;
+    while(s[start]==' '){
+        start++;
+    }
+
+    int len = 0;
+    while(s[len] != '\0'){
+        len++;
+    }
+
+    int end = len-1;
+    while(s[end] == ' '){
+        end--;
+    }
+
+    char* r =(char*) malloc((end-start+1)*(sizeof(char)));
+
+    int i = 0;
+    int j = start;
+
+    while(j < end){
+        r[i] = s[j];
+        i++;
+        j++;
+    }
+    r[i] = '\0';
+
+    return r;
+    
+}
 
 int main(){
+    char s[] = "   aaaa   ";
 
-return 0;
+    int len1 = 0;
+    while(s[len1] != '\0'){
+        len1++;
+    }
+
+    char* r=trimmer(s);
+
+    for(int i = 0; r[i] !='\0'; i++){
+        printf("%c", r[i]);
+    }
+
+    free(r);
+
+    return 0;
+
+    
 }
